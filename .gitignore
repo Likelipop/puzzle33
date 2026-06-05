@@ -5,3 +5,4 @@ models/*.joblib
 data/raw/*
 data/processed/*.csv
 *.pyc
+.env
