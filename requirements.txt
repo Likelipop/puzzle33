@@ -7,3 +7,6 @@ matplotlib>=3.7.0
 onnx>=1.14.0
 onnxscript>=0.1.0
 streamlit
+onnxruntime 
+pillow 
+numpy
