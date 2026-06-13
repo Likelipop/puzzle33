@@ -1,49 +1,79 @@
 # Puzzle33 Training Workspace
 
-This workspace is structured for local dataset preparation, Colab training, and Streamlit deployment.
+This repository is organized to support the complete workflow of **dataset preparation**, **model training**, and **deployment**.
 
-## Structure
+For the best experience when exploring the project, use the notebooks provided in the `notebooks/` directory. Due to the limited computational resources of my local machine, all model training was performed using **Google Colab**, while data preparation and deployment were handled locally.
 
-- `notebooks/` — Jupyter/Colab notebook templates and examples.
-- `data/raw/` — raw input data.
-- `data/processed/` — processed training data ready for training.
-- `models/` — saved model artifacts.
-- `src/` — reusable Python modules for data generation and model training.
-- `scripts/` — local pipeline scripts.
-- `streamlit_app/` — Streamlit app for deployment.
+You can either:
+
+- Run the notebooks to reproduce the data preparation, training, and inference process.
+- Clone the repository and launch the Streamlit application locally for a more interactive experience.
+
+---
+
+## Project Structure
+
+```text
+.
+├── notebooks/        # Jupyter/Colab notebooks for training and experimentation
+├── model/
+│   ├── ViT/          # trained model (onnx)
+├── src/              # Reusable Python modules
+├── scripts/          # Data processing and training scripts
+└── streamlit_app/    # Streamlit deployment application
+````
+
+---
 
 ## Setup
 
-1. Create a virtual environment:
-   ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate
-   pip install -r requirements.txt
-   ```
+### 1. Create a Virtual Environment
 
-2. Generate training data locally:
-   ```bash
-   python scripts/prepare_data.py
-   ```
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-3. Transfer data to Colab:
-   - Copy `data/processed/training_data.csv` to Google Drive, or
-   - Use `scripts/push_to_drive.sh` with a mounted drive path:
-     ```bash
-     DRIVE_PATH=/path/to/GoogleDrive ./scripts/push_to_drive.sh
-     ```
+### 2. Train the Model
 
-4. Open `notebooks/training_colab.ipynb` in Colab and train the model there.
+Open `notebooks/training_colab.ipynb` in Google Colab and execute the notebook to train the model.
 
-5. Save the trained model to `models/model.joblib` and optionally download it.
+### 3. Launch the Streamlit Application
 
-6. Run Streamlit for deployment:
-   ```bash
-   streamlit run streamlit_app/app.py
-   ```
+```bash
+streamlit run streamlit_app/app.py
+```
+
+The application will load the trained model and provide an interface for making predictions.
+
+---
 
 ## Workflow
 
-- Local: generate data and prepare it for training.
-- Colab: import the dataset, train a model, and persist it.
-- Streamlit: load the trained model and serve predictions.
+### Data Preparation (Local)
+
+* Generate or collect raw data.
+* Preprocess and transform the data.
+* Save the processed dataset to `data/processed/`.
+
+### Model Training (Google Colab)
+
+* Upload or access the processed dataset.
+* Train the model using Colab's compute resources.
+* Save trained model artifacts to the `models/` directory.
+
+### Deployment (Local)
+
+* Load the trained model.
+* Launch the Streamlit application.
+* Perform inference through the web interface.
+
+---
+
+## Notes
+
+* Training was conducted on Google Colab due to hardware limitations on the local machine.
+* The notebooks contain the complete workflow for data preparation, training, and inference.
+* The Streamlit application provides a user-friendly interface for interacting with the trained model.
+
